@@ -1,0 +1,6 @@
+networkmanager
+bluez
+bluez-utils
+zerotier-one
+gvfs
+gvfs-dnssd

@@ -23,22 +23,20 @@ RUN gpg --recv-keys F54984BFA16C640F 85AB96E6FA1BE5FE && \
 
 
 FROM ghcr.io/unusualnorm/archlinux-bootc
-COPY pkglist.txt /tmp/pkglist.txt
-COPY pkglist.aur.txt /tmp/pkglist.aur.txt
+COPY pkglists /tmp/pkglists
 COPY --from=builder /aurpkgs /usr/lib/pacman/aurpkgs
 COPY files /
 
 RUN echo -e "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf && \
-    echo -e "\n[lizardbyte]\nSigLevel = Optional\nServer = https://github.com/LizardByte/pacman-repo/releases/latest/download" >> /etc/pacman.conf && \
     echo -e "\n[aur]\nSigLevel = Optional TrustAll\nServer = file:///usr/lib/pacman/aurpkgs" >> /etc/pacman.conf && \
-    pacman --disable-sandbox -Syu --noconfirm $(grep -v '^#' /tmp/pkglist.txt | tr '\n' ' ') && \
-    rm /tmp/pkglist.txt /tmp/pkglist.aur.txt
+    pacman --disable-sandbox -Syu --noconfirm $(cat /tmp/pkglists/*.txt | tr '\n' ' ') && \
+    rm -r /tmp/pkglists
 
 COPY scripts /scripts
 COPY run-scripts.sh /tmp/run-scripts.sh
 RUN /tmp/run-scripts.sh && \
     pacman -Scc --noconfirm && \
     rm -r /tmp/run-scripts.sh /scripts && \
-    rm -r /boot/* /var/cache/* /var/db/* /var/lib/* /var/log/* /var/roothome/.cache && \
+    rm -r /boot/* /var/cache/* /var/db/* /var/lib/* /var/log/* /var/roothome/.cache /var/spool/* && \
     find "/etc" -type s -exec rm {} \; && \
-    bootc container lint
+    bootc container lint --fatal-warnings

@@ -1,0 +1,6 @@
+git
+less
+openbsd-netcat
+sudo
+unzip
+vim

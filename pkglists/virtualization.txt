@@ -1,0 +1,6 @@
+dnsmasq
+libvirt
+nvidia-container-toolkit
+podman
+podman-compose
+qemu-desktop

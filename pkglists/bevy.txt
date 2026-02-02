@@ -1,0 +1,6 @@
+libx11
+pkgconf
+alsa-lib
+libxcursor
+libxrandr
+libxi

@@ -1,0 +1,9 @@
+mesa
+libva-mesa-driver
+
+libva-intel-driver
+intel-media-driver
+vulkan-intel
+
+nvidia-open
+libva-nvidia-driver

@@ -1,0 +1,2 @@
+cosmic
+xdg-desktop-portal-gtk

@@ -1,0 +1,3 @@
+skopeo
+dosfstools
+e2fsprogs

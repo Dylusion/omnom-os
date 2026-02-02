@@ -1,1 +1,1 @@
-podman run --rm -it omnom-os
+podman run --rm -it omnom-os /bin/bash
