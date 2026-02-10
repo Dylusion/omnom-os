@@ -4,6 +4,7 @@ android-tools
 aspnet-runtime
 aspnet-targeting-pack
 clang
+dart
 deno
 dotnet-sdk
 gcc
