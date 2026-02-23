@@ -1,0 +1,6 @@
+[Unit]
+Description=Fetch flatpak updates
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/flatpak update --assumeyes --noninteractive
