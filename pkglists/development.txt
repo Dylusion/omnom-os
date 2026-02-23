@@ -4,6 +4,7 @@ android-tools
 aspnet-runtime
 aspnet-targeting-pack
 clang
+cmake
 dart
 deno
 dotnet-sdk
@@ -11,6 +12,7 @@ gcc
 godot
 jdk-openjdk
 mingw-w64-rust-bin
+ninja
 nodejs
 python
 rust

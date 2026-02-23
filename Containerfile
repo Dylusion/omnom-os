@@ -29,14 +29,19 @@ COPY files /
 
 RUN echo -e "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf && \
     echo -e "\n[aur]\nSigLevel = Optional TrustAll\nServer = file:///usr/lib/pacman/aurpkgs" >> /etc/pacman.conf && \
-    pacman --disable-sandbox -Syu --noconfirm $(cat /tmp/pkglists/*.txt | tr '\n' ' ') && \
+    pacman --disable-sandbox -Syu --noconfirm $(grep -h -v '^#' /tmp/pkglists/*.txt | tr '\n' ' ') && \
     rm -r /tmp/pkglists
+
+# RUN pacman --disable-sandbox -S whois --noconfirm && \
+#     useradd -m user && \
+#     usermod -aG wheel user && \
+#     usermod -p "$(echo "password" | mkpasswd -s)" user
 
 COPY scripts /scripts
 COPY run-scripts.sh /tmp/run-scripts.sh
 RUN /tmp/run-scripts.sh && \
-    pacman -Scc --noconfirm && \
+    pacman -Scc --noconfirm && rm -r /var/cache/* && \
     rm -r /tmp/run-scripts.sh /scripts && \
-    rm -r /boot/* /var/cache/* /var/db/* /var/lib/* /var/log/* /var/roothome/.cache /var/spool/* && \
+    rm -rf /boot/* /var/db/* /var/lib/* /var/log/* /var/roothome/.cache /var/spool/* && \
     find "/etc" -type s -exec rm {} \; && \
     bootc container lint --fatal-warnings

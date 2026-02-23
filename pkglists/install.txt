@@ -1,3 +1,4 @@
 skopeo
 dosfstools
 e2fsprogs
+btrfs-progs
