@@ -1,6 +1,8 @@
 git
 less
 openbsd-netcat
+slurp
 sudo
 unzip
+wl-clipboard
 vim

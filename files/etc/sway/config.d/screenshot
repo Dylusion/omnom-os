@@ -1,0 +1,2 @@
+unbindsym Print
+bindsym Print exec grim -g "$(slurp)" - | wl-copy
