@@ -42,6 +42,6 @@ COPY run-scripts.sh /tmp/run-scripts.sh
 RUN /tmp/run-scripts.sh && \
     pacman -Scc --noconfirm && rm -r /var/cache/* && \
     rm -r /tmp/run-scripts.sh /scripts && \
-    rm -rf /boot/* /var/db/* /var/lib/* /var/log/* /var/roothome/.cache /var/spool/* && \
+    rm -rf /boot/* /run/* /tmp/* /var/db/* /var/lib/* /var/log/* /var/roothome/.cache /var/spool/* && \
     find "/etc" -type s -exec rm {} \; && \
     bootc container lint --fatal-warnings
