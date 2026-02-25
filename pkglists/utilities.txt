@@ -6,3 +6,4 @@ sudo
 unzip
 wl-clipboard
 vim
+yt-dlp
